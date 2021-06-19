@@ -1,0 +1,186 @@
+.home-page-container {
+  background-color: #161625;
+  min-height: 100vh;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search-bar-container {
+  background-color: #2f2f43;
+  width: 100%;
+  padding: 16px;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+}
+.search-bar {
+  background-color: #2f2f43;
+  border: none;
+  outline: none;
+  color: #94a3b8;
+  font-size: 16px;
+  width: 100%;
+  font-weight: 400;
+}
+.icon {
+  font-size: 16px;
+  color: #94a3b8;
+  margin-right: 10px;
+}
+.suggestion-list-container {
+  list-style-type: none;
+  width: 100%;
+  padding: 0px;
+}
+.suggestion-item {
+  margin-left: 0px;
+  background-color: none;
+  color: #64748b;
+  font-size: 12px;
+  padding: 8px;
+  border-bottom: 1px solid #64748b;
+  outline-color: #94a3b8;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.suggestion-item:hover {
+  background-color: #1f1f30;
+  border: 1px solid;
+}
+.each-state-code-container {
+  background-color: rgba(28, 212, 212, 0.16);
+  width: 67px;
+  height: 28px;
+  margin-right: 10px;
+  border-radius: 6px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.state-code {
+  color: #facc15;
+  font-weight: 600;
+}
+.state-name {
+  width: 80%;
+  padding-left: 8px;
+}
+.arrow-icon {
+  font-size: 8px;
+  color: #facc15;
+  border: 2px solid #facc15;
+  padding: 2px 3px 2px 4px;
+  border-radius: 4px;
+  margin-left: 7px;
+}
+.state-wise-list-container {
+  width: 100%;
+  list-style-type: none;
+  background-color: #1e1e30;
+  border-radius: 12px;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  overflow-x: scroll;
+}
+.list-container {
+  padding: 32px;
+  width: 1100px;
+}
+.state-list-item {
+  width: 1100px;
+}
+.state-list-item {
+  display: flex;
+  justify-content: space-around;
+  text-align: right;
+  padding: 0px 15px;
+  border-radius: 8px;
+  transition: background 300ms ease-in-out;
+  cursor: pointer;
+}
+.list-item-count {
+  width: 100%;
+  text-align: right;
+  font-weight: 500;
+  font-size: 14px;
+}
+.state-list-item:hover {
+  background-color: #2f2f43;
+}
+.state-name {
+  text-align: left;
+  color: #f1f5f9;
+}
+
+.list-titles {
+  border-bottom: 1px solid #475569;
+  padding: 10px 32px;
+  font-weight: bold;
+}
+.confirmed {
+  color: #ff073a;
+}
+.tested {
+  color: #007bff;
+}
+.recovered {
+  color: #28a745;
+}
+.deceased {
+  color: #6c757d;
+}
+.population {
+  color: #94a3b8;
+}
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 45px;
+  margin-bottom: 65px;
+}
+.card {
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+.link-item {
+  text-decoration: none;
+}
+@media screen and (min-width: 768px) {
+  .home-page-container {
+    padding: 64px 150px;
+  }
+  .search-bar-container,
+  .suggestion-list-container {
+    width: 60%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .list-container {
+    width: 100%;
+  }
+  .state-list-item {
+    width: 100%;
+  }
+  .state-wise-list-container {
+    overflow: auto;
+  }
+}
+.spinner-container {
+  margin-top: 5rem;
+}

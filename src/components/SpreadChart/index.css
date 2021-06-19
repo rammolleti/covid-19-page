@@ -1,0 +1,57 @@
+.chart-container {
+  padding: 15px 20px 20px 20px;
+  border-radius: 12px;
+  width: 100%;
+  margin-bottom: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.graph-heading {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0px;
+}
+.confirmed-chart {
+  background-color: #331427;
+}
+.active-chart {
+  background-color: #132240;
+}
+.recovered-chart {
+  background-color: #182829;
+}
+.deceased-chart {
+  background-color: #1c1c2b;
+}
+.tested-chart {
+  background-color: #230f41;
+}
+.vaccine-chart {
+  background-color: #2e1e30;
+}
+.test-positively-ration-chart {
+  background-color: #332323;
+}
+.confirmed-heading {
+  color: #ff073a;
+}
+.active-heading {
+  color: #007bff;
+}
+.recovered-heading {
+  color: #27a243;
+}
+.deceased-heading {
+  color: #6c757d;
+}
+.tested-heading {
+  color: #9673b9;
+}
+.vaccine-heading {
+  color: #f95581;
+}
+.test-positively-ration-heading {
+  color: #fd7e14;
+}
