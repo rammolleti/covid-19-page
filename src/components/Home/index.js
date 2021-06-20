@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
+import Footer from '../Footer'
 import './index.css'
 
 const statesList = [
@@ -197,21 +198,26 @@ class Home extends Component {
   renderSuggestions = () => {
     const {suggestion} = this.state
     return (
-      <ul className="suggestion-list-container">
+      <ul id="suggestionContainer" className="suggestion-list-container">
         {suggestion.map(eachState => (
-          <li
-            className="suggestion-item"
-            onClick={this.renderInputValue}
+          <Link
+            className="link-item"
+            to={`/${eachState.state_name}/${eachState.state_code}`}
             key={eachState.state_code}
           >
-            <p className="state-name">{eachState.state_name}</p>
-            <div className="each-state-code-container">
-              <p className="state-code">{eachState.state_code}</p>
-              <i className="arrow-icon fa fa-chevron-right" aria-hidden="true">
-                {' '}
-              </i>
-            </div>
-          </li>
+            <li className="suggestion-item" onClick={this.renderInputValue}>
+              <p className="state-name">{eachState.state_name}</p>
+              <div className="each-state-code-container">
+                <p className="state-code">{eachState.state_code}</p>
+                <i
+                  className="arrow-icon fa fa-chevron-right"
+                  aria-hidden="true"
+                >
+                  {' '}
+                </i>
+              </div>
+            </li>
+          </Link>
         ))}
       </ul>
     )
@@ -235,7 +241,7 @@ class Home extends Component {
         <div className="tested card">
           <p>Active</p>
           <img src="/img/protection 1.png" alt="active-log" />
-          <p>{totalCases.total.tested}</p>
+          <p>{totalCases.total.confirmed - totalCases.total.recovered}</p>
         </div>
         <div className="recovered card">
           <p>Recovered</p>
@@ -252,6 +258,16 @@ class Home extends Component {
         </div>
       </div>
     )
+  }
+
+  removeSuggestions = () => {
+    const suggestionContainerEl = document.getElementById('suggestionContainer')
+    suggestionContainerEl.style.display = 'none'
+  }
+
+  reRenderSuggestions = () => {
+    const suggestionContainerEl = document.getElementById('suggestionContainer')
+    suggestionContainerEl.style.display = 'block'
   }
 
   renderCasesListIndia = () => {
@@ -320,11 +336,13 @@ class Home extends Component {
           id="searchInput"
           placeholder="Enter the State"
           onChange={this.filterSuggestion}
+          onFocus={this.reRenderSuggestions}
         />
       </div>
       {this.renderSuggestions()}
       {this.renderTotalCases()}
       {this.renderCasesListIndia()}
+      <Footer />
     </>
   )
 

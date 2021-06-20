@@ -89,11 +89,11 @@
   overflow-x: scroll;
 }
 .list-container {
-  padding: 32px;
-  width: 1100px;
+  padding: 0px;
+  width: 750px;
 }
 .state-list-item {
-  width: 1100px;
+  width: 750px;
 }
 .state-list-item {
   display: flex;
@@ -120,8 +120,15 @@
 
 .list-titles {
   border-bottom: 1px solid #475569;
-  padding: 10px 32px;
   font-weight: bold;
+}
+@media screen and (min-width: 768px) {
+  .state-list-item {
+    padding: 0px 32px;
+  }
+  .list-titles {
+    width: 100%;
+  }
 }
 .confirmed {
   color: #ff073a;
@@ -170,7 +177,7 @@
     width: 60%;
   }
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 768px) {
   .list-container {
     width: 100%;
   }
@@ -179,6 +186,9 @@
   }
   .state-wise-list-container {
     overflow: auto;
+  }
+  .list-titles {
+    width: 100%;
   }
 }
 .spinner-container {

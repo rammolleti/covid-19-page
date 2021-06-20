@@ -18,6 +18,7 @@
   border: none;
   outline: none;
   transition: background 100ms ease-in-out;
+  cursor: pointer;
 }
 .tested-button:hover {
   background-color: #132240;
@@ -28,11 +29,26 @@
 .deceased-button:hover {
   background-color: #212230;
 }
+.confirmed-button:hover {
+  background-color: #331427;
+}
 .spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50vh;
+}
+.confirmed-background {
+  background-color: #331427;
+}
+.active-background {
+  background-color: #132240;
+}
+.recovered-background {
+  background-color: #182829;
+}
+.deceased-background {
+  background-color: #212230;
 }
 .state-name-container {
   width: 100%;
@@ -52,6 +68,7 @@
   display: inline-block;
   font-size: 16px;
   border-radius: 32px;
+  font-weight: 600;
 }
 .state-name-update-details-card {
   display: flex;
@@ -62,6 +79,15 @@
   font-size: 12px;
   color: #cbd5e1;
 }
+.card-title {
+  font-size: 12px;
+  font-weight: 500;
+}
+.card-count {
+  font-size: 16px;
+  font-weight: 500;
+}
+
 .tested-text {
   color: #94a3b8;
   font-size: 12px;
@@ -76,8 +102,30 @@
   width: 100%;
   margin-top: 8px;
 }
-.confirmed-card {
-  background-color: #331427;
+@media screen and (min-width: 768px) {
+  .state-name-update-details-card {
+    margin-top: 60px;
+  }
+  .state-name-heading {
+    font-size: 32px;
+    font-weight: 600;
+  }
+  .last-date-text {
+    font-size: 16px;
+    color: #cbd5e1;
+  }
+  .tested-count {
+    font-size: 24px;
+  }
+  .tested-text {
+    font-size: 16px;
+  }
+  .card-title {
+    font-size: 16px;
+  }
+  .card-count {
+    font-size: 24px;
+  }
 }
 .cardContainer {
   margin-top: 30px;
@@ -86,27 +134,41 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: flex-start;
   padding: 0px;
   margin-bottom: 45px;
 }
 .districts-list-item {
   display: flex;
+  align-items: center;
   width: 45%;
   margin: 1px 9px;
   color: #94a3b8;
   padding: 0px;
 }
+
 .district-count {
   width: 30%;
   color: #94a3b8;
   font-weight: 500;
   margin-right: 6px;
+  font-size: 16px;
 }
 .district-name {
   color: #94a3b8;
   width: 70%;
+  font-size: 12px;
   padding-left: 5px;
+}
+@media screen and (min-width: 768px) {
+  .districts-list-item {
+    margin: 1px 16px;
+    width: 100%;
+  }
+  .district-name {
+    padding-left: 20px;
+  }
 }
 .district-heading {
   width: 100%;
@@ -114,6 +176,17 @@
   font-weight: 500;
   font-size: 24px;
   margin-bottom: 0px;
+}
+@media screen and (min-width: 768px) {
+  .district-name {
+    font-size: 16px;
+  }
+  .district-count {
+    font-size: 24px;
+  }
+  .district-heading {
+    font-size: 32px;
+  }
 }
 .spread-trend-container {
   width: 100%;
@@ -128,7 +201,6 @@
   margin: 0px;
   margin-bottom: 7px;
 }
-
 .spread-button {
   width: 30%;
   padding: 10px;
@@ -143,7 +215,7 @@
 @media screen and (min-width: 768px) {
   .top-districts-container {
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 0px;
   }
   .districts-list-item {
@@ -153,4 +225,7 @@
     color: #94a3b8;
     padding: 0px;
   }
+}
+.state-name-update-details-card {
+  align-items: flex-start;
 }

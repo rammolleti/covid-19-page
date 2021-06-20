@@ -3,13 +3,39 @@ import './index.css'
 
 const SpreadChart = props => {
   const {chartData, chartHeading, chartColor, chartBgColor, color} = props
-  console.log(chartData)
   const data = {
-    labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    labels: [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+    ],
     datasets: [
       {
         label: 'COVID-19 SPREAD',
-        data: [1, 10, 20, ...chartData],
+        data: chartData,
         fill: false,
         backgroundColor: color,
         borderColor: color,
@@ -30,7 +56,7 @@ const SpreadChart = props => {
   }
   return (
     <div className={`chart-container ${chartBgColor}`}>
-      <p className={`${chartColor}`}>{chartHeading}</p>
+      <p className={`chart-heading ${chartColor}`}>{chartHeading}</p>
       <Line className="chart" data={data} options={options} />
     </div>
   )

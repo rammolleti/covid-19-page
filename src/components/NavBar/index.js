@@ -87,9 +87,11 @@ class NavBar extends Component {
     return (
       <>
         <div className="nav-bar">
-          <h1 className="logo-title">
-            COVID19<span className="highlight-word">INDIA</span>
-          </h1>
+          <Link to="/" className="nav-home-link">
+            <h1 className="logo-title">
+              COVID19<span className="highlight-word">INDIA</span>
+            </h1>
+          </Link>
           {this.renderOptions()}
         </div>
         {optionButtonStatus && this.renderOptionsInSmallDevices()}

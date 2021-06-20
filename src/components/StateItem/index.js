@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Chart from '../Chart'
 import SpreadChart from '../SpreadChart'
+import Footer from '../Footer'
 import './index.css'
 
 class StateItem extends Component {
@@ -12,6 +13,7 @@ class StateItem extends Component {
     stateCasesData: {},
     chart: [],
     spreadTreadsData: [],
+    cardHighlight: 'Confirmed',
   }
 
   componentDidMount() {
@@ -72,46 +74,57 @@ class StateItem extends Component {
   )
 
   renderTotalCases = () => {
-    const {stateData} = this.state
+    const {stateData, cardHighlight} = this.state
+    const confirmedHighlight =
+      cardHighlight === 'Confirmed' ? 'confirmed-background' : ''
+    const activeHighlight =
+      cardHighlight === 'Active' ? 'active-background' : ''
+    const recoveredHighlight =
+      cardHighlight === 'Recovered' ? 'recovered-background' : ''
+    const deceasedHighlight =
+      cardHighlight === 'Deceased' ? 'deceased-background' : ''
     return (
       <div className="card-container" id="cardContainer">
         <button
           type="button"
-          className="confirmed card confirmed-card confirmed-button button"
+          className={`confirmed card confirmed-button button ${confirmedHighlight}`}
+          onClick={this.confirmedCardRender}
         >
-          <p>Confirmed</p>
+          <p className="card-title">Confirmed</p>
           <img src="/img/Group.png" alt="confirmed-log" />
-          <p>{stateData.total.confirmed}</p>
+          <p className="card-count">{stateData.total.confirmed}</p>
         </button>
         <button
-          className="tested card tested-button button"
+          className={`tested card tested-button button ${activeHighlight}`}
           type="button"
           onClick={this.callOnActiveCases}
         >
-          <p>Active</p>
+          <p className="card-title">Active</p>
           <img src="/img/protection 1.png" alt="active-log" />
-          <p>{stateData.total.tested}</p>
+          <p className="card-count">
+            {stateData.total.confirmed - stateData.total.recovered}
+          </p>
         </button>
         <button
           type="button"
-          className="recovered card recovered-button button"
+          className={`recovered card recovered-button button ${recoveredHighlight}`}
           onClick={this.callOnRecoveredCases}
         >
-          <p>Recovered</p>
+          <p className="card-title">Recovered</p>
           <img src="/img/recovered 1.png" alt="recovered-log" />
-          <p>{stateData.total.recovered}</p>
+          <p className="card-count">{stateData.total.recovered}</p>
         </button>
         <button
           type="button"
-          className="deceased card deceased-button button"
+          className={`deceased card deceased-button button ${deceasedHighlight}`}
           onClick={this.callOnDeceasedCases}
         >
-          <p>Deceased</p>
+          <p className="card-title">Deceased</p>
           <img
             src="/img/Corona Virus Symptoms Shortness of breath.png"
             alt="active-log"
           />
-          <p>{stateData.total.deceased}</p>
+          <p className="card-count">{stateData.total.deceased}</p>
         </button>
       </div>
     )
@@ -148,16 +161,33 @@ class StateItem extends Component {
       confirmedCases.length,
     )
     const chartData = ['#9A0E31', lastTenDaysConfirmedCases]
-
     return chartData
+  }
+
+  confirmedCardRender = () => {
+    const {stateCasesData} = this.state
+    const {AP} = stateCasesData
+    const {dates} = AP
+    const confirmedCases = Object.keys(dates).map(index => [
+      index,
+      dates[index].total.confirmed,
+    ])
+    const lastTenDaysConfirmedCases = confirmedCases.slice(
+      confirmedCases.length - 10,
+      confirmedCases.length,
+    )
+    const chartData = ['#9a0e31', lastTenDaysConfirmedCases]
+
+    this.setState({
+      chart: chartData,
+      cardHighlight: 'Confirmed',
+    })
   }
 
   callOnActiveCases = () => {
     const {stateCasesData} = this.state
     const {AP} = stateCasesData
     const {dates} = AP
-    console.log(dates)
-
     const confirmedCases = Object.keys(dates).map(index => [
       index,
       dates[index].total.tested,
@@ -170,6 +200,7 @@ class StateItem extends Component {
 
     this.setState({
       chart: chartData,
+      cardHighlight: 'Active',
     })
   }
 
@@ -190,6 +221,7 @@ class StateItem extends Component {
 
     this.setState({
       chart: chartData,
+      cardHighlight: 'Recovered',
     })
   }
 
@@ -209,6 +241,7 @@ class StateItem extends Component {
 
     this.setState({
       chart: chartData,
+      cardHighlight: 'Deceased',
     })
   }
 
@@ -218,13 +251,22 @@ class StateItem extends Component {
       eachItem => eachItem[1].total.confirmed,
     )
     const spreadTreadsActiveCount = spreadTreadsData.map(
-      eachItem => eachItem[1].total.tested,
+      eachItem => eachItem[1].total.confirmed - eachItem[1].total.recovered,
     )
     const spreadTreadsRecoveredCount = spreadTreadsData.map(
       eachItem => eachItem[1].total.recovered,
     )
     const spreadTreadsDeceasedCount = spreadTreadsData.map(
       eachItem => eachItem[1].total.deceased,
+    )
+    const spreadTreadsVaccinatedCount = spreadTreadsData.map(
+      eachItem => eachItem[1].total.vaccinated1,
+    )
+    const spreadTreadsTestedCount = spreadTreadsData.map(
+      eachItem => eachItem[1].total.tested,
+    )
+    const testedPositiveRatio = spreadTreadsData.map(
+      eachItem => eachItem[1].total.tested / eachItem[1].total.confirmed,
     )
     return (
       <>
@@ -257,25 +299,25 @@ class StateItem extends Component {
           color="#6c757d"
         />
         <SpreadChart
-          chartData={spreadTreadsConfirmedCount}
-          chartHeading="Deceased"
-          chartColor="deceased-heading"
-          chartBgColor="deceased-chart"
-          color="#6c757d"
+          chartData={spreadTreadsTestedCount}
+          chartHeading="Tested"
+          chartColor="tested-heading"
+          chartBgColor="tested-chart"
+          color="#9673b9"
         />
         <SpreadChart
-          chartData={spreadTreadsConfirmedCount}
-          chartHeading="Deceased"
-          chartColor="deceased-heading"
-          chartBgColor="deceased-chart"
-          color="#6c757d"
+          chartData={spreadTreadsVaccinatedCount}
+          chartHeading="Vaccine"
+          chartColor="vaccine-heading"
+          chartBgColor="vaccine-chart"
+          color="#f95581"
         />
         <SpreadChart
-          chartData={spreadTreadsConfirmedCount}
-          chartHeading="Deceased"
-          chartColor="deceased-heading"
-          chartBgColor="deceased-chart"
-          color="#6c757d"
+          chartData={testedPositiveRatio}
+          chartHeading="Test Positively Ratio"
+          chartColor="test-positively-ration-heading"
+          chartBgColor="test-positively-ration-chart"
+          color="#FD7E14"
         />
       </>
     )
@@ -283,13 +325,30 @@ class StateItem extends Component {
 
   renderStateDetails = () => {
     const {stateData, state, chart} = this.state
-
+    const dateString = stateData.meta.last_updated
+    const date = new Date(dateString)
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ]
     return (
       <>
         <div className="state-name-container">
           <div className="state-name-update-details-card">
             <h1 className="state-name-heading">{state}</h1>
-            <p className="last-date-text">{stateData.meta.last_updated}</p>
+            <p className="last-date-text">{`Last updated date on ${
+              months[date.getMonth()]
+            } ${date.getDate()}th ${date.getFullYear()}.`}</p>
           </div>
           <div className="state-name-update-details-card">
             <p className="tested-text">Tested</p>
@@ -309,6 +368,7 @@ class StateItem extends Component {
           </button>
         </div>
         {this.renderSpreadTrendCharts()}
+        <Footer />
       </>
     )
   }

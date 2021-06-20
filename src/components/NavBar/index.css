@@ -20,6 +20,10 @@
   outline: none;
   background-color: transparent;
 }
+.nav-home-link {
+  text-decoration: none;
+  cursor: pointer;
+}
 .menu-logo {
   width: 34px;
   height: 34px;

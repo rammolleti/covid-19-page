@@ -1,4 +1,5 @@
 import {Bar} from 'react-chartjs-2'
+import './index.css'
 
 const Chart = props => {
   const {chart} = props
@@ -49,7 +50,7 @@ const Chart = props => {
   }
   return (
     <>
-      <Bar data={data} options={options} />
+      <Bar className="chart" data={data} options={options} />
     </>
   )
 }
