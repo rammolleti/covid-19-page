@@ -36,6 +36,7 @@ body {
 }
 .social-apps-logo-container {
   width: 100%;
+  max-width: 250px;
   margin-top: 16px;
 }
 
@@ -44,7 +45,6 @@ body {
     width: 448px;
   }
   .social-apps-logo-container {
-    width: 100%;
     margin-top: 32px;
   }
   .about-footer-line {
