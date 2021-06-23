@@ -54,6 +54,7 @@ const About = () => (
       must also be reviewed for the purpose of policy recommendations on how the
       vaccines should be used.
     </p>
+    <Footer />
   </div>
 )
 
